@@ -1,0 +1,24 @@
+{
+	"slike":[
+		{
+		"slika": "./images/avto.png",
+		"tekst" : "avto"
+		},
+		{
+		"slika": "./images/jabolko.png",
+		"tekst" : "jabolko"
+		},
+		{
+		"slika": "./images/kolo.png",
+		"tekst" : "kolo"
+		},
+		{
+		"slika": "./images/raca.png",
+		"tekst" : "raca"
+		},
+		{
+		"slika": "./images/tiger.jpg",
+		"tekst" : "tiger"
+		}
+	]
+}
