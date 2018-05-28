@@ -45,6 +45,15 @@ Rectangle {
                 }
             }
 
+            Text {
+                id: naslov
+                text: "Izberi besedo"
+                y: 5
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pointSize: 30; font.bold: true
+                color: "white"
+            }
+
         }
 
         ListModel {

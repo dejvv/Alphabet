@@ -10,7 +10,7 @@ Rectangle {
     RowLayout {
         anchors.fill: parent
 
-        Rectangle {
+        Rectangle {  //zgornji navigacijski bar
             id: topnav
             height: 50
             width: parent.width
@@ -44,15 +44,62 @@ Rectangle {
                 }
             }
 
+            Text {
+                id: naslov
+                text: "Nastavitve"
+                y: 5
+                anchors.horizontalCenter: parent.horizontalCenter
+                font.pointSize: 30; font.bold: true
+                color: "white"
+            }
         }
 
-        Rectangle {
-            id:content
-            clip: true
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: topnav.bottom
-            anchors.bottom: parent.bottom
+        Flickable {  //sem notri dodajaj nastavitve - ta seznam nastavitev
+                id:list
+                contentWidth: parent.width
+                contentHeight: 1200
+                clip: true
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: topnav.bottom
+                anchors.bottom: parent.bottom
+
+                ColumnLayout {
+                    spacing: 20
+
+                    Rectangle {
+                        height: 50
+                        width: parent.width
+
+                        RowLayout {
+                            Text {
+                                text: "Glasba:"
+                                font.pointSize: 30
+                            }
+                            Switch {
+                                checked: true
+                            }
+                        }
+
+                    }
+
+                    Rectangle {
+                        height: 50
+                        width: parent.width
+
+                        RowLayout {
+                            Text {
+                                text: "Velike črke:"
+                                font.pointSize: 30
+                            }
+                            Switch {
+                                checked: true
+                            }
+                        }
+
+                    }
+                }
+
         }
     }
 
