@@ -3,10 +3,10 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
 
 
-
 Rectangle {
-    width: 900
-    height: 600
+    id:wordsGrid
+    width: 1024
+    height: 768
 
     RowLayout {
         anchors.fill: parent
@@ -64,6 +64,7 @@ Rectangle {
             id: besedaDelegate
             Item {
                 width: mreza.cellWidth; height: mreza.cellHeight
+
                 Column {
                     anchors.fill: parent
 
@@ -81,6 +82,10 @@ Rectangle {
                         anchors.horizontalCenter: parent.horizontalCenter
                     }
                 }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: { mreza.visible = false; globaldata.tekst = tekst; globaldata.slika = slika; loader.source = "nivo1.qml" }
+                }
             }
         }
 
@@ -92,11 +97,11 @@ Rectangle {
             anchors.top: topnav.bottom
             anchors.bottom: parent.bottom
             cellWidth: main.width/4; cellHeight: main.width/4
+            visible: true
 
             model: besedaModel
             delegate: besedaDelegate
-            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
-            focus: true
+//            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
         }
 
         Component.onCompleted: {

@@ -6,8 +6,8 @@ import QtQuick.Layouts 1.1
 
 Rectangle {
     id: main
-    width: 900; height: 600
-    color: "white"
+    width: 1024;
+    height: 768
 
     Text {
         id: naslov
@@ -84,4 +84,7 @@ Rectangle {
         id: loader
         anchors.fill: parent
       }
+    Model{
+        id:globaldata
+    }
 }

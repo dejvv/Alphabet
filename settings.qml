@@ -4,7 +4,8 @@ import QtQuick.Controls 2.0
 
 Rectangle {
     id: settings
-    width: 900; height: 600
+    width: 1024;
+    height: 768
     color: "white"
 
     RowLayout {
