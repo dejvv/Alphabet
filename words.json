@@ -19,6 +19,22 @@
 		{
 		"slika": "./images/tiger.jpg",
 		"tekst" : "tiger"
+		},
+		{
+		"slika": "./images/slon.png",
+		"tekst" : "slon"
+		},
+		{
+		"slika": "./images/sonce.png",
+		"tekst" : "sonce"
+		},
+		{
+		"slika": "./images/ladja.png",
+		"tekst" : "ladja"
+		},
+		{
+		"slika": "./images/panda.png",
+		"tekst" : "panda"
 		}
 	]
 }

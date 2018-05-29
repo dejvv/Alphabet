@@ -12,8 +12,9 @@ Rectangle {
         id: besedaDelegate
         Item {
             width: mreza.cellWidth; height: mreza.cellHeight
+
             Column {
-                anchors.fill: parent
+                anchors.fill: parent               
                 
                 Image {
                     width: 200

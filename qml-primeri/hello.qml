@@ -3,7 +3,7 @@ import QtQuick 2.0
 
 Rectangle {
     id: page
-    width: 500; height: 400
+    width: 900; height: 600
     color: "gray"
 
     Text {
@@ -57,4 +57,6 @@ Rectangle {
         Cell { cellColor: "steelblue"; onClicked: uv.color = cellColor }
         Cell { cellColor: "black"; onClicked: uv.color = cellColor }
     }
+
+
 }

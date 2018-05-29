@@ -19,10 +19,11 @@ Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
+            z: 1
 
             Button {
                 text: "Nazaj"
-                onClicked: { loader.source = "main.qml" }
+                onClicked: { mreza.visible = false; loader.source = "main.qml" }
                 anchors.leftMargin: 10
 
                 contentItem: Text {
