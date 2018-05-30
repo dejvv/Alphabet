@@ -2,6 +2,8 @@ import QtQuick 2.6
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.1
+import Qt.labs.settings 1.0
+
 
 
 Rectangle {
@@ -16,7 +18,7 @@ Rectangle {
         anchors.verticalCenter: main.verticalCenter
         anchors.verticalCenterOffset: -100
         anchors.horizontalCenter: main.horizontalCenter
-        font.pointSize: 100; font.bold: true
+        font.pointSize: 100; font.bold: true        
     }
     LinearGradient  {
         anchors.fill: naslov
@@ -30,6 +32,7 @@ Rectangle {
     RowLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter:  parent.verticalCenter
+        visible: true
 
         Button {
             text: "Igraj"
@@ -84,7 +87,4 @@ Rectangle {
         id: loader
         anchors.fill: parent
       }
-    Model{
-        id:globaldata
-    }
 }

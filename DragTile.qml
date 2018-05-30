@@ -33,7 +33,13 @@ Item {
                 anchors.fill: parent
                 color: "white"
                 font.pixelSize: 48
-                text: { globaldata.tekst.charAt(modelData).toUpperCase() }
+                text: {
+                    if(globaldata.nivo ==="4"){
+                        globaldata.abeceda.charAt(modelData).toUpperCase()
+                    }else{
+                        globaldata.tekst.charAt(modelData).toUpperCase()
+                    }
+                }
                 horizontalAlignment:Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
             }

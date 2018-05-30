@@ -22,7 +22,7 @@ Rectangle {
 
             Button {
                 text: "Nazaj"
-                onClicked: { loader.source = "main.qml" }
+                onClicked: { saveSettings(); loader.source = "main.qml" }
                 anchors.leftMargin: 10
 
                 contentItem: Text {
@@ -81,7 +81,6 @@ Rectangle {
                                 checked: true
                             }
                         }
-
                     }
 
                     Rectangle {
@@ -97,6 +96,28 @@ Rectangle {
                                 checked: true
                             }
                         }
+                    }
+                    Rectangle {
+                        height: 50
+                        width: parent.width
+
+                        RowLayout {
+                            Text {
+                                text: "Nivo:"
+                                font.pointSize: 30
+                            }
+                            ComboBox {
+                                id: nivoCB
+                                currentIndex: {
+                                    if(globaldata.nivo ===""){
+                                        1
+                                    }
+
+                                    globaldata.nivo -1
+                                }
+                                model: ["1", "2", "3", "4"]
+                            }
+                        }
 
                     }
                 }
@@ -104,4 +125,8 @@ Rectangle {
         }
     }
 
+    function saveSettings()
+      {
+        globaldata.nivo = (nivoCB.currentIndex +1).toString()
+      }
 }

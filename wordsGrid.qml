@@ -70,8 +70,8 @@ Rectangle {
                     anchors.fill: parent
 
                     Image {
-                        width: mreza.cellWidth -20
-                        height: mreza.cellHeight -20
+                        width: mreza.cellWidth -30
+                        height: mreza.cellHeight -30
                         fillMode: Image.PreserveAspectFit
                         source: slika
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -85,7 +85,25 @@ Rectangle {
                 }
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: { mreza.visible = false; globaldata.tekst = tekst; globaldata.slika = slika; loader.source = "nivo1.qml" }
+                    onClicked: { mreza.visible = false; globaldata.tekst = tekst; globaldata.slika = slika;
+                        switch(globaldata.nivo) {
+                            case "1":
+                                loader.source = "nivo1.qml"
+                                break;
+                            case "2":
+                                loader.source = "nivo2.qml"
+                                break;
+                            case "3":
+                                loader.source = "nivo3.qml"
+                                break;
+                            case "4":
+                                loader.source = "nivo4.qml"
+                                break;
+                            default:
+                                loader.source = "nivo1.qml"
+                                break;
+                        }
+                    }
                 }
             }
         }
