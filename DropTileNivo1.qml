@@ -29,7 +29,13 @@ DropArea {  //to sm naredu posebi file ker rabiš v prvem nivoju tudoi črke v D
             anchors.fill: parent
             color: "white"
             font.pixelSize: 48
-            text: { globaldata.tekst.charAt(modelData).toUpperCase() }
+            text: {
+                if(globaldata.capsLock){
+                    globaldata.tekst.charAt(modelData).toUpperCase()
+                }else{
+                    globaldata.tekst.charAt(modelData).toLowerCase()
+                }
+            }
             horizontalAlignment:Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }

@@ -1,6 +1,8 @@
 import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
+import QtMultimedia 5.0
+
 
 
 Rectangle {
@@ -8,6 +10,15 @@ Rectangle {
     color: "lightgrey"
     width: 1024
     height: 768
+
+    Audio {
+            id: playMusic
+            source: {if(globaldata.music === true){
+                    "music/background_music.mp3"
+                }
+            }
+            autoPlay: true
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -22,7 +33,7 @@ Rectangle {
                 Button {
                     id: nazajbtn
                     text: "Nazaj"
-                    onClicked: { loader.source = "wordsGrid.qml" }
+                    onClicked: { playMusic.source=""; loader.source = "wordsGrid.qml" }
                     anchors.leftMargin: 10
                     height: 50
 

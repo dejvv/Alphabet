@@ -78,7 +78,8 @@ Rectangle {
                                 font.pointSize: 30
                             }
                             Switch {
-                                checked: true
+                                id: music
+                                checked: globaldata.music
                             }
                         }
                     }
@@ -93,7 +94,8 @@ Rectangle {
                                 font.pointSize: 30
                             }
                             Switch {
-                                checked: true
+                                id: capsLock
+                                checked: globaldata.capsLock
                             }
                         }
                     }
@@ -128,5 +130,7 @@ Rectangle {
     function saveSettings()
       {
         globaldata.nivo = (nivoCB.currentIndex +1).toString()
+        globaldata.music = music.checked
+        globaldata.capsLock = capsLock.checked
       }
 }

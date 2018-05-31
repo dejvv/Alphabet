@@ -35,9 +35,17 @@ Item {
                 font.pixelSize: 48
                 text: {
                     if(globaldata.nivo ==="4"){
-                        globaldata.abeceda.charAt(modelData).toUpperCase()
+                        if(globaldata.capsLock){
+                            globaldata.abeceda.charAt(modelData).toUpperCase()
+                        }else{
+                            globaldata.abeceda.charAt(modelData).toLowerCase()
+                        }
                     }else{ //shufflam črke da so random
-                        globaldata.shuffledTekst.charAt(modelData).toUpperCase()
+                        if(globaldata.capsLock){
+                            globaldata.shuffledTekst.charAt(modelData).toUpperCase()
+                        }else{
+                            globaldata.shuffledTekst.charAt(modelData).toLowerCase()
+                        }
                     }
                 }
                 horizontalAlignment:Text.AlignHCenter

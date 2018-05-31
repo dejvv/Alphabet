@@ -10,5 +10,7 @@ Item {
 
     //spremenljivke za nastavitve
     property string nivo: "1" //1,2,3,4
+    property bool music: true
+    property bool capsLock: true
 
 }
