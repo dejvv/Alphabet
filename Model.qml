@@ -5,6 +5,7 @@ import QtQuick 2.0
 Item {
     property string tekst
     property string slika
+    property string shuffledTekst
     property string abeceda: "abcčdefghijklmnoprsštuvzž"
 
     //spremenljivke za nastavitve

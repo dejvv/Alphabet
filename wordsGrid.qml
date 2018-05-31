@@ -85,7 +85,7 @@ Rectangle {
                 }
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: { mreza.visible = false; globaldata.tekst = tekst; globaldata.slika = slika;
+                    onClicked: { mreza.visible = false; globaldata.shuffledTekst = wordsGrid.shuffelWord(tekst); globaldata.tekst = tekst; globaldata.slika = slika;
                         switch(globaldata.nivo) {
                             case "1":
                                 loader.source = "nivo1.qml"
@@ -152,4 +152,13 @@ Rectangle {
         id: loader
         anchors.fill: parent
       }
+
+    function shuffelWord (word){
+        var shuffledWord = '';
+        word = word.split('');
+        while (word.length > 0) {
+          shuffledWord +=  word.splice(word.length * Math.random() << 0, 1);
+        }
+        return shuffledWord;
+    }
 }

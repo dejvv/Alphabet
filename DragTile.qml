@@ -36,8 +36,8 @@ Item {
                 text: {
                     if(globaldata.nivo ==="4"){
                         globaldata.abeceda.charAt(modelData).toUpperCase()
-                    }else{
-                        globaldata.tekst.charAt(modelData).toUpperCase()
+                    }else{ //shufflam črke da so random
+                        globaldata.shuffledTekst.charAt(modelData).toUpperCase()
                     }
                 }
                 horizontalAlignment:Text.AlignHCenter
