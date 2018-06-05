@@ -28,4 +28,5 @@ DropArea {
             }
         ]
     }
+    onDropped: {checkIfWordCompleted()}
 }

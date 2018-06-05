@@ -115,4 +115,19 @@ Rectangle {
         anchors.fill: parent
       }
 
+    function checkIfWordCompleted(){
+        var counter = 0
+        for (var i = 0; i < redDestination.children.length -1; i++){
+            for(var j=0; j< redDestination.children[i].children.length; j++){
+                if(!redDestination.children[i].children[j].color){ //če nima določene barve.. to je mal tak hacky
+                    counter++
+                    break
+                }
+            }
+        }
+        if(counter === globaldata.tekst.length){
+            playMusic.source=""; loader.source = "wordsGrid.qml"
+        }
+    }
+
 }

@@ -27,6 +27,7 @@ DropArea {  //to sm naredu posebi file ker rabiš v prvem nivoju tudoi črke v D
         ]
 
         Text {
+            id: crkaDT
             anchors.fill: parent
             color: "white"
             font.pixelSize: 48
@@ -41,4 +42,6 @@ DropArea {  //to sm naredu posebi file ker rabiš v prvem nivoju tudoi črke v D
             verticalAlignment: Text.AlignVCenter
         }
     }
+    onDropped: {checkIfWordCompleted()}
+
 }

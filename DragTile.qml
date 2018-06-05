@@ -19,29 +19,29 @@ Item {
 
         width: 64; height: 64
         anchors.centerIn: parent
-
-        drag.target: tile
+        drag.target: tile        
 
         onReleased: {if(tile.Drag.target !== null){
 //                        if( tile.Drag.target.containsDrag ){
 //                            parent = root
 //                        }
-                        if(crka.text.toUpperCase() !== globaldata.tekst.charAt(tile.Drag.target.indexDT).toUpperCase() ){
-                            parent = root
-                            if (globaldata.sound){ //če so vklopljeni zvočni efekti
-                                sound.source = "music/wrong_move.wav"
-                                sound.play()
-                            }
-                        }else{
-                            parent = tile.Drag.target
-                            if (globaldata.sound){
-                                sound.source = "music/success_move.mp3"
-                                sound.play()
-                            }
-                        }
-                    }else{
-                        parent = root;
+                if(crka.text.toUpperCase() !== globaldata.tekst.charAt(tile.Drag.target.indexDT).toUpperCase() ){
+                    parent = root
+                    if (globaldata.sound){ //če so vklopljeni zvočni efekti
+                        sound.source = "music/wrong_move.wav"
+                        sound.play()
                     }
+                }else{
+                    parent = tile.Drag.target
+                    if (globaldata.sound){
+                        sound.source = "music/success_move.mp3"
+                        sound.play()
+                        tile.Drag.drop()
+                    }
+                }
+            }else{
+                parent = root;
+            }
         }
 
         Rectangle {
