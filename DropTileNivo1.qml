@@ -4,10 +4,11 @@ DropArea {  //to sm naredu posebi file ker rabiš v prvem nivoju tudoi črke v D
     id: dragTarget
 
     property string colorKey
+    property int indexDT
     property alias dropProxy: dragTarget
 
     width: 64; height: 64
-    keys: [ colorKey ]
+    keys: [ colorKey, indexDT ]
 
     Rectangle {
         id: dropRectangle

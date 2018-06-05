@@ -18,6 +18,8 @@ Rectangle {
                 }
             }
             autoPlay: true
+            volume: 0.1
+
     }
 
     ColumnLayout {
@@ -91,7 +93,7 @@ Rectangle {
 
                         Repeater {
                             model: {globaldata.tekst.length}
-                            delegate: DropTile { colorKey: "red" }
+                            delegate:  DropTile { colorKey: "red"; indexDT: index}
                         }
                     }
                 }

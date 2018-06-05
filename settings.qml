@@ -90,6 +90,22 @@ Rectangle {
 
                         RowLayout {
                             Text {
+                                text: "Zvočni efekti:"
+                                font.pointSize: 30
+                            }
+                            Switch {
+                                id: sound
+                                checked: globaldata.sound
+                            }
+                        }
+                    }
+
+                    Rectangle {
+                        height: 50
+                        width: parent.width
+
+                        RowLayout {
+                            Text {
                                 text: "Velike črke:"
                                 font.pointSize: 30
                             }
@@ -132,5 +148,6 @@ Rectangle {
         globaldata.nivo = (nivoCB.currentIndex +1).toString()
         globaldata.music = music.checked
         globaldata.capsLock = capsLock.checked
+        globaldata.sound = sound.checked
       }
 }

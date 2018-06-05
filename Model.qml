@@ -12,5 +12,5 @@ Item {
     property string nivo: "1" //1,2,3,4
     property bool music: true
     property bool capsLock: true
-
+    property bool sound: true
 }
