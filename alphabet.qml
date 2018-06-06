@@ -1,16 +1,16 @@
 import QtQuick 2.6
 import QtQuick.Window 2.2
 
-Window {
-    visible: true
-    width: 640
-    height: 480
-    title: qsTr("Hello World")
+Rectangle {
+    width: 1024;
+    height: 768
 
-    MainForm {
-        anchors.fill: parent
-        mouseArea.onClicked: {
-            console.log(qsTr('Clicked on background. Text: "' + textEdit.text + '"'))
-        }
+    Model{  //ta model mora bit tu ker pride drugače do konfilkt in se prepisujejo nastavitve
+        id:globaldata
     }
+    Loader
+      {
+        source: "main.qml"
+        anchors.fill: parent
+      }
 }

@@ -2,12 +2,14 @@ import QtQuick 2.6
 import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.1
+import Qt.labs.settings 1.0
+
 
 
 Rectangle {
     id: main
-    width: 900; height: 600
-    color: "white"
+    width: 1024;
+    height: 768
 
     Text {
         id: naslov
@@ -16,7 +18,7 @@ Rectangle {
         anchors.verticalCenter: main.verticalCenter
         anchors.verticalCenterOffset: -100
         anchors.horizontalCenter: main.horizontalCenter
-        font.pointSize: 100; font.bold: true
+        font.pointSize: 100; font.bold: true        
     }
     LinearGradient  {
         anchors.fill: naslov
@@ -30,6 +32,7 @@ Rectangle {
     RowLayout {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter:  parent.verticalCenter
+        visible: true
 
         Button {
             text: "Igraj"

@@ -4,7 +4,8 @@ import QtQuick.Controls 2.0
 
 Rectangle {
     id: settings
-    width: 900; height: 600
+    width: 1024;
+    height: 768
     color: "white"
 
     RowLayout {
@@ -21,7 +22,7 @@ Rectangle {
 
             Button {
                 text: "Nazaj"
-                onClicked: { loader.source = "main.qml" }
+                onClicked: { saveSettings(); loader.source = "main.qml" }
                 anchors.leftMargin: 10
 
                 contentItem: Text {
@@ -77,10 +78,26 @@ Rectangle {
                                 font.pointSize: 30
                             }
                             Switch {
-                                checked: true
+                                id: music
+                                checked: globaldata.music
                             }
                         }
+                    }
 
+                    Rectangle {
+                        height: 50
+                        width: parent.width
+
+                        RowLayout {
+                            Text {
+                                text: "Zvočni efekti:"
+                                font.pointSize: 30
+                            }
+                            Switch {
+                                id: sound
+                                checked: globaldata.sound
+                            }
+                        }
                     }
 
                     Rectangle {
@@ -93,7 +110,30 @@ Rectangle {
                                 font.pointSize: 30
                             }
                             Switch {
-                                checked: true
+                                id: capsLock
+                                checked: globaldata.capsLock
+                            }
+                        }
+                    }
+                    Rectangle {
+                        height: 50
+                        width: parent.width
+
+                        RowLayout {
+                            Text {
+                                text: "Nivo:"
+                                font.pointSize: 30
+                            }
+                            ComboBox {
+                                id: nivoCB
+                                currentIndex: {
+                                    if(globaldata.nivo ===""){
+                                        1
+                                    }
+
+                                    globaldata.nivo -1
+                                }
+                                model: ["1", "2", "3", "4"]
                             }
                         }
 
@@ -103,4 +143,11 @@ Rectangle {
         }
     }
 
+    function saveSettings()
+      {
+        globaldata.nivo = (nivoCB.currentIndex +1).toString()
+        globaldata.music = music.checked
+        globaldata.capsLock = capsLock.checked
+        globaldata.sound = sound.checked
+      }
 }

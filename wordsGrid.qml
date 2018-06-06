@@ -3,10 +3,10 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
 
 
-
 Rectangle {
-    width: 900
-    height: 600
+    id:wordsGrid
+    width: 1024
+    height: 768
 
     RowLayout {
         anchors.fill: parent
@@ -19,10 +19,11 @@ Rectangle {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
+            z: 1
 
             Button {
                 text: "Nazaj"
-                onClicked: { loader.source = "main.qml" }
+                onClicked: { mreza.visible = false; loader.source = "main.qml" }
                 anchors.leftMargin: 10
 
                 contentItem: Text {
@@ -64,12 +65,13 @@ Rectangle {
             id: besedaDelegate
             Item {
                 width: mreza.cellWidth; height: mreza.cellHeight
+
                 Column {
                     anchors.fill: parent
 
                     Image {
-                        width: mreza.cellWidth -20
-                        height: mreza.cellHeight -20
+                        width: mreza.cellWidth -30
+                        height: mreza.cellHeight -30
                         fillMode: Image.PreserveAspectFit
                         source: slika
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -79,6 +81,28 @@ Rectangle {
                         font.pointSize: 24
                         font.capitalization: Font.AllUppercase
                         anchors.horizontalCenter: parent.horizontalCenter
+                    }
+                }
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: { mreza.visible = false; globaldata.shuffledTekst = wordsGrid.shuffelWord(tekst); globaldata.tekst = tekst; globaldata.slika = slika;
+                        switch(globaldata.nivo) {
+                            case "1":
+                                loader.source = "nivo1.qml"
+                                break;
+                            case "2":
+                                loader.source = "nivo2.qml"
+                                break;
+                            case "3":
+                                loader.source = "nivo3.qml"
+                                break;
+                            case "4":
+                                loader.source = "nivo4.qml"
+                                break;
+                            default:
+                                loader.source = "nivo1.qml"
+                                break;
+                        }
                     }
                 }
             }
@@ -92,11 +116,11 @@ Rectangle {
             anchors.top: topnav.bottom
             anchors.bottom: parent.bottom
             cellWidth: main.width/4; cellHeight: main.width/4
+            visible: true
 
             model: besedaModel
             delegate: besedaDelegate
-            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
-            focus: true
+//            highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
         }
 
         Component.onCompleted: {
@@ -128,4 +152,13 @@ Rectangle {
         id: loader
         anchors.fill: parent
       }
+
+    function shuffelWord (word){
+        var shuffledWord = '';
+        word = word.split('');
+        while (word.length > 0) {
+          shuffledWord +=  word.splice(word.length * Math.random() << 0, 1);
+        }
+        return shuffledWord;
+    }
 }
