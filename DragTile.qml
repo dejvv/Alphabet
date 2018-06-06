@@ -22,10 +22,7 @@ Item {
         drag.target: tile        
 
         onReleased: {if(tile.Drag.target !== null){
-//                        if( tile.Drag.target.containsDrag ){
-//                            parent = root
-//                        }
-                if(crka.text.toUpperCase() !== globaldata.tekst.charAt(tile.Drag.target.indexDT).toUpperCase() ){
+                if(crka.text.toUpperCase() !== globaldata.tekst.charAt(tile.Drag.target.indexDT).toUpperCase()){
                     parent = root
                     if (globaldata.sound){ //če so vklopljeni zvočni efekti
                         sound.source = "music/wrong_move.wav"
@@ -36,11 +33,23 @@ Item {
                     if (globaldata.sound){
                         sound.source = "music/success_move.mp3"
                         sound.play()
-                        tile.Drag.drop()
                     }
+                    tile.Drag.drop()
+                    tile.color = "green"
+                    parent.children[0].color ="green"
+                }
+                if(parent.children.length !== 2){ //da ne moreš dat dveh istih črk na eno mesto
+                    parent = root
+                    if (globaldata.sound){
+                        sound.source = "music/wrong_move.wav"
+                        sound.play()
+                    }
+                    tile.color = "red"
                 }
             }else{
+                parent.children[0].color ="red"
                 parent = root;
+                tile.color = "red"
             }
         }
 
