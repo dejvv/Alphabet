@@ -13,4 +13,6 @@ Item {
     property bool music: true
     property bool capsLock: true
     property bool sound: true
+    property bool help: true
+
 }

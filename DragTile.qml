@@ -21,7 +21,8 @@ Item {
         anchors.centerIn: parent
         drag.target: tile        
 
-        onReleased: {if(tile.Drag.target !== null){
+        onReleased: { animateOpacity.stop(); tile.opacity = 1;
+            if(tile.Drag.target !== null){
                 if(crka.text.toUpperCase() !== globaldata.tekst.charAt(tile.Drag.target.indexDT).toUpperCase()){
                     parent = root
                     if (globaldata.sound){ //če so vklopljeni zvočni efekti
@@ -96,5 +97,28 @@ Item {
             }
 
         }
+    }
+
+    NumberAnimation {
+        id: animateOpacity
+        target: tile
+        properties: "opacity"
+        from: 0.10
+        to: 1.0
+        duration: 1500
+        loops: Animation.Infinite
+    }
+
+    Timer {
+            interval: 10000; running: true
+            onTriggered: {
+                if(tile.children[0].text.charAt(0).toUpperCase() === globaldata.tekst.charAt(0).toUpperCase()){
+                    if( ! tile.parent.parent.children[0].children[0].text){
+                        if(globaldata.help){
+                            animateOpacity.start()
+                        }
+                    }
+                }
+            }
     }
 }

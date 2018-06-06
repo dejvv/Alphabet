@@ -124,6 +124,21 @@ Rectangle {
 
                         RowLayout {
                             Text {
+                                text: "Pomoč:"
+                                font.pointSize: 30
+                            }
+                            Switch {
+                                id: help
+                                checked: globaldata.help
+                            }
+                        }
+                    }
+                    Rectangle {
+                        height: 50
+                        width: parent.width
+
+                        RowLayout {
+                            Text {
                                 text: "Nivo:"
                                 font.pointSize: 30
                             }
@@ -152,5 +167,7 @@ Rectangle {
         globaldata.music = music.checked
         globaldata.capsLock = capsLock.checked
         globaldata.sound = sound.checked
+        globaldata.help = help.checked
+
       }
 }
