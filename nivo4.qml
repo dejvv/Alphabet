@@ -19,6 +19,12 @@ Rectangle {
             }
             autoPlay: true
             volume: 0.1
+            loops: Audio.Infinite
+    }
+    Audio {
+            id: sound
+            source: ""
+            volume: 0.8
     }
 
     ColumnLayout {
@@ -114,6 +120,9 @@ Rectangle {
         id: loader
         anchors.fill: parent
       }
+    Timer {
+        id: timer
+    }
 
     function checkIfWordCompleted(){
         var counter = 0
@@ -126,8 +135,31 @@ Rectangle {
             }
         }
         if(counter === globaldata.tekst.length){
-            playMusic.source=""; loader.source = "wordsGrid.qml"
+            playMusic.source="";
+            sound.source = "music/word_completed.wav"
+            sound.play()
+            delay(2000, function(){
+                var rnd = Math.floor(Math.random() * mreza.count);
+                mreza.currentIndex = rnd;
+                var item = mreza.currentItem;
+                var slikaSource = item.children[0].children[0].source
+                var tekst = item.children[0].children[1].text
+                console.log(slikaSource)
+                console.log(tekst)
+                mreza.visible = false;
+                globaldata.shuffledTekst = wordsGrid.shuffelWord(tekst);
+                globaldata.tekst = tekst;
+                globaldata.slika = slikaSource;
+                loader.source = "nivo1.qml"
+            })
         }
+    }
+
+    function delay(delayTime, cb) {
+        timer.interval = delayTime;
+        timer.repeat = false;
+        timer.triggered.connect(cb);
+        timer.start();
     }
 
 }

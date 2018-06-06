@@ -57,13 +57,16 @@ Rectangle {
 
         Flickable {  //sem notri dodajaj nastavitve - ta seznam nastavitev
                 id:list
-                contentWidth: parent.width
-                contentHeight: 1200
+                contentWidth: parent.width-30
+                contentHeight: 700
                 clip: true
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.top: topnav.bottom
                 anchors.bottom: parent.bottom
+                anchors.leftMargin: 30
+                anchors.topMargin: 20
+
 
                 ColumnLayout {
                     spacing: 20
@@ -121,6 +124,21 @@ Rectangle {
 
                         RowLayout {
                             Text {
+                                text: "Pomoč:"
+                                font.pointSize: 30
+                            }
+                            Switch {
+                                id: help
+                                checked: globaldata.help
+                            }
+                        }
+                    }
+                    Rectangle {
+                        height: 50
+                        width: parent.width
+
+                        RowLayout {
+                            Text {
                                 text: "Nivo:"
                                 font.pointSize: 30
                             }
@@ -149,5 +167,7 @@ Rectangle {
         globaldata.music = music.checked
         globaldata.capsLock = capsLock.checked
         globaldata.sound = sound.checked
+        globaldata.help = help.checked
+
       }
 }
