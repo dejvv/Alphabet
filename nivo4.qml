@@ -40,7 +40,6 @@ Rectangle {
                 Button {
                     id: nazajbtn
                     text: "Nazaj"
-                    onClicked: { playMusic.source=""; loader.source = "wordsGrid.qml" }
                     anchors.leftMargin: 10
                     height: 50
 
@@ -60,6 +59,28 @@ Rectangle {
                         border.color: parent.down ? "aqua" : "deepskyblue"
                         border.width: 1.5
                         radius: 5
+                    }
+                    Timer {
+                        id: longPressTimerSettingsNivo4
+
+                        interval: timerTime // interval, definiran zgoraj
+                        repeat: false
+                        running: false
+                    }
+
+                    // ko se spremeni pritisk
+                    onPressedChanged: {
+                        if ( pressed ) {
+                            longPressTimerSettingsNivo4.running = true;
+                        } else {
+                            if(longPressTimerSettingsNivo4.running){
+                                longPressTimerSettingsNivo4.running = false;
+                            } else {
+                                console.log("Action approved in nivo 4 on back button")
+                                playMusic.source="";
+                                loader.source = "wordsGrid.qml"
+                            }
+                        }
                     }
                 }
 
