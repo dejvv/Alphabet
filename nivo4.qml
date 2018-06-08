@@ -7,7 +7,7 @@ import QtMultimedia 5.0
 
 Rectangle {
     id: main
-    color: "lightgrey"
+    color: "white"
     width: 1024
     height: 768
 
@@ -39,27 +39,21 @@ Rectangle {
 
                 Button {
                     id: nazajbtn
-                    text: "Nazaj"
+//                    text: "Nazaj"
                     anchors.leftMargin: 10
                     height: 50
 
-                    contentItem: Text {
-                            text: parent.text
-                            font.pointSize: 20
-                            opacity: enabled ? 1.0 : 0.3
-                            color: parent.down ? "aqua" : "deepskyblue"
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                            elide: Text.ElideRight
-                        }
-                    background: Rectangle {
-                        implicitWidth: 120
-                        implicitHeight: 48
-                        opacity: enabled ? 1 : 0.3
-                        border.color: parent.down ? "aqua" : "deepskyblue"
-                        border.width: 1.5
-                        radius: 5
+                    contentItem: Image {
+                        source: "arrow-back.png"
+                        height: parent.down ? 40 : 45
+                        fillMode: Image.PreserveAspectFit
+                        anchors.verticalCenter: parent.verticalCenter
                     }
+
+                    background: Rectangle {
+                        color: "transparent"
+                    }
+
                     Timer {
                         id: longPressTimerSettingsNivo4
 
@@ -106,10 +100,11 @@ Rectangle {
                         anchors.centerIn: parent
                         height: 64
                         opacity: 0.5
+                        spacing: 5
 
                         Repeater {
                             model: {globaldata.tekst.length}
-                            delegate: DropTile { colorKey: "red"; indexDT: index}
+                            delegate: DropTile { colorKey: "deepskyblue"; indexDT: index}
                         }
                     }
                 }
@@ -127,10 +122,11 @@ Rectangle {
                 width: 64*10
                 height: 64*3
                 columns: 10
+                spacing: 5
 
                 Repeater {
                     model: { globaldata.abeceda.length}
-                    delegate: DragTile { colorKey: "red" }
+                    delegate: DragTile { colorKey: "deepskyblue" }
                 }
             }
 
