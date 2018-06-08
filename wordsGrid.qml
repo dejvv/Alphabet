@@ -2,7 +2,6 @@ import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
 
-
 Rectangle {
     id:wordsGrid
     width: 1024
@@ -22,10 +21,18 @@ Rectangle {
             z: 1
 
             Button {
-                text: "Nazaj"
+//                text: "Nazaj"
                 anchors.leftMargin: 10
 
-                contentItem: Text {
+                Image {
+                    source: "back-icon.png"
+                    height: 50
+                    fillMode: Image.PreserveAspectFit
+                    anchors.centerIn: parent
+                }
+
+                contentItem:
+                    Text {
                         text: parent.text
                         font.pointSize: 20
                         opacity: enabled ? 1.0 : 0.3
@@ -50,6 +57,11 @@ Rectangle {
                     interval: timerTime // interval, definiran zgoraj
                     repeat: false
                     running: false
+
+                    onTriggered: {
+                        console.log("Action approved in wordsGrid on back button")
+                        mreza.visible = false; loader.source = "main.qml"
+                    }
                 }
 
                 // ko se spremeni pritisk
@@ -60,8 +72,8 @@ Rectangle {
                         if(longPressTimerPlayWordsGridBack.running){
                             longPressTimerPlayWordsGridBack.running = false;
                         } else {
-                            console.log("Action approved in wordsGrid on back button")
-                            mreza.visible = false; loader.source = "main.qml"
+//                            console.log("Action approved in wordsGrid on back button")
+//                            mreza.visible = false; loader.source = "main.qml"
                         }
                     }
                 }

@@ -7,7 +7,7 @@ import QtMultimedia 5.0
 
 Rectangle {
     id: main
-    color: "lightgrey"
+    color: "white"
     width: 1024
     height: 768
 
@@ -39,9 +39,16 @@ Rectangle {
 
                 Button {
                     id: nazajbtn
-                    text: "Nazaj"
+//                    text: "Nazaj"
                     anchors.leftMargin: 10
                     height: 50
+
+                    Image {
+                        source: "back-icon.png"
+                        height: 50
+                        fillMode: Image.PreserveAspectFit
+                        anchors.centerIn: parent
+                    }
 
                     contentItem: Text {
                             text: parent.text
@@ -106,10 +113,11 @@ Rectangle {
                         anchors.centerIn: parent
                         height: 64
                         opacity: 0.5
+                        spacing: 5
 
                         Repeater {
                             model: {globaldata.tekst.length}
-                            delegate: DropTile { colorKey: "red"; indexDT: index}
+                            delegate: DropTile { colorKey: "deepskyblue"; indexDT: index}
                         }
                     }
                 }
@@ -127,10 +135,11 @@ Rectangle {
                 width: 64*10
                 height: 64*3
                 columns: 10
+                spacing: 5
 
                 Repeater {
                     model: { globaldata.abeceda.length}
-                    delegate: DragTile { colorKey: "red" }
+                    delegate: DragTile { colorKey: "deepskyblue" }
                 }
             }
 

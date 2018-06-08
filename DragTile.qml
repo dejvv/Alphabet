@@ -19,7 +19,7 @@ Item {
 
         width: 64; height: 64
         anchors.centerIn: parent
-        drag.target: tile        
+        drag.target: tile
 
         onReleased: { animateOpacity.stop(); tile.opacity = 1;
             if(tile.Drag.target !== null){
