@@ -22,7 +22,6 @@ Rectangle {
 
             Button {
                 text: "Nazaj"
-                onClicked: { saveSettings(); loader.source = "main.qml" }
                 anchors.leftMargin: 10
 
                 contentItem: Text {
@@ -42,6 +41,31 @@ Rectangle {
                     border.color: parent.down ? "aqua" : "deepskyblue"
                     border.width: 1.5
                     radius: 5
+                }
+                Timer {
+                    id: longPressTimerPlaySettingsBack
+
+                    interval: timerTime // interval, definiran zgoraj
+                    repeat: false
+                    running: false
+                    onTriggered: {
+                        console.log("Action approved in settings on back button")
+                        saveSettings(); loader.source = "main.qml"
+                    }
+                }
+
+                // ko se spremeni pritisk
+                onPressedChanged: {
+                    if ( pressed ) {
+                        longPressTimerPlaySettingsBack.running = true;
+                    } else {
+                        if(longPressTimerPlaySettingsBack.running){
+                            longPressTimerPlaySettingsBack.running = false;
+                        } else {
+//                            console.log("Action approved in settings on back button")
+//                            saveSettings(); loader.source = "main.qml"
+                        }
+                    }
                 }
             }
 

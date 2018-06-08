@@ -7,7 +7,7 @@ import QtMultimedia 5.0
 
 Rectangle {
     id: main
-    color: "lightgrey"
+    color: "white"
     width: 1024
     height: 768
 
@@ -39,27 +39,46 @@ Rectangle {
 
                 Button {
                     id: nazajbtn
-                    text: "Nazaj"
-                    onClicked: { playMusic.source=""; loader.source = "wordsGrid.qml" }
+//                    text: "Nazaj"
                     anchors.leftMargin: 10
                     height: 50
 
-                    contentItem: Text {
-                            text: parent.text
-                            font.pointSize: 20
-                            opacity: enabled ? 1.0 : 0.3
-                            color: parent.down ? "aqua" : "deepskyblue"
-                            horizontalAlignment: Text.AlignHCenter
-                            verticalAlignment: Text.AlignVCenter
-                            elide: Text.ElideRight
-                        }
+                    contentItem: Image {
+                        source: "arrow-back.png"
+                        height: parent.down ? 40 : 45
+                        fillMode: Image.PreserveAspectFit
+                    }
+
                     background: Rectangle {
-                        implicitWidth: 120
-                        implicitHeight: 48
-                        opacity: enabled ? 1 : 0.3
-                        border.color: parent.down ? "aqua" : "deepskyblue"
-                        border.width: 1.5
-                        radius: 5
+                        color: "transparent"
+                    }
+
+                    Timer {
+                        id: longPressTimerSettingsNivo3
+
+                        interval: timerTime // interval, definiran zgoraj
+                        repeat: false
+                        running: false
+                        onTriggered: {
+                            console.log("Action approved in nivo 3 on back button")
+                            playMusic.source="";
+                            loader.source = "wordsGrid.qml"
+                        }
+                    }
+
+                    // ko se spremeni pritisk
+                    onPressedChanged: {
+                        if ( pressed ) {
+                            longPressTimerSettingsNivo3.running = true;
+                        } else {
+                            if(longPressTimerSettingsNivo3.running){
+                                longPressTimerSettingsNivo3.running = false;
+                            } else {
+//                                console.log("Action approved in nivo 3 on back button")
+//                                playMusic.source="";
+//                                loader.source = "wordsGrid.qml"
+                            }
+                        }
                     }
                 }
 
@@ -85,10 +104,11 @@ Rectangle {
                         anchors.centerIn: parent
                         height: 64
                         opacity: 0.5
+                        spacing: 5
 
                         Repeater {
                             model: {globaldata.tekst.length}
-                            delegate: DropTile { colorKey: "red"; indexDT: index}
+                            delegate: DropTile { colorKey: "deepskyblue"; indexDT: index}
                         }
                     }
                 }
@@ -103,11 +123,12 @@ Rectangle {
             Row {
                 id: redSource
                 anchors.centerIn: parent
+                spacing: 5
                 width: {64 * globaldata.tekst.length} //zato da je row dolg toliko kot je črk in pravilno centrira
 
                 Repeater {
                     model: {globaldata.tekst.length}
-                    delegate: DragTile { colorKey: "red" }
+                    delegate: DragTile { colorKey: "deepskyblue" }
                 }
             }
 

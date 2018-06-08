@@ -2,7 +2,6 @@ import QtQuick 2.6
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.0
 
-
 Rectangle {
     id:wordsGrid
     width: 1024
@@ -22,27 +21,46 @@ Rectangle {
             z: 1
 
             Button {
-                text: "Nazaj"
-                onClicked: { mreza.visible = false; loader.source = "main.qml" }
+//                text: "Nazaj"
                 anchors.leftMargin: 10
+                height: down ? 40 : 45
+                anchors.verticalCenter: parent.verticalCenter
 
-                contentItem: Text {
-                        text: parent.text
-                        font.pointSize: 20
-                        opacity: enabled ? 1.0 : 0.3
-                        color: parent.down ? "aqua" : "deepskyblue"
-                        horizontalAlignment: Text.AlignHCenter
-                        verticalAlignment: Text.AlignVCenter
-                        elide: Text.ElideRight
-                    }
+                contentItem: Image {
+                    source: "arrow-back.png"
+                    height: parent.height
+                    fillMode: Image.PreserveAspectFit
+                }
 
                 background: Rectangle {
-                    implicitWidth: 120
-                    implicitHeight: 48
-                    opacity: enabled ? 1 : 0.3
-                    border.color: parent.down ? "aqua" : "deepskyblue"
-                    border.width: 1.5
-                    radius: 5
+                    color: "transparent"
+                }
+
+                Timer {
+                    id: longPressTimerPlayWordsGridBack
+
+                    interval: timerTime // interval, definiran zgoraj
+                    repeat: false
+                    running: false
+
+                    onTriggered: {
+                        console.log("Action approved in wordsGrid on back button")
+                        mreza.visible = false; loader.source = "main.qml"
+                    }
+                }
+
+                // ko se spremeni pritisk
+                onPressedChanged: {
+                    if ( pressed ) {
+                        longPressTimerPlayWordsGridBack.running = true;
+                    } else {
+                        if(longPressTimerPlayWordsGridBack.running){
+                            longPressTimerPlayWordsGridBack.running = false;
+                        } else {
+//                            console.log("Action approved in wordsGrid on back button")
+//                            mreza.visible = false; loader.source = "main.qml"
+                        }
+                    }
                 }
             }
 
@@ -85,7 +103,12 @@ Rectangle {
                 }
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: { mreza.visible = false; globaldata.shuffledTekst = wordsGrid.shuffelWord(tekst); globaldata.tekst = tekst; globaldata.slika = slika;
+                    onClicked: {
+                        // skrijem mrezo, premesam besedo in pokazem tekst & sliko
+                        mreza.visible = false;
+                        globaldata.shuffledTekst = wordsGrid.shuffelWord(tekst);
+                        globaldata.tekst = tekst;
+                        globaldata.slika = slika;
                         switch(globaldata.nivo) {
                             case "1":
                                 loader.source = "nivo1.qml"
