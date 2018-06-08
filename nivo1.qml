@@ -12,7 +12,8 @@ Rectangle {
 
     Audio {
             id: playMusic
-            source: {if(globaldata.music === true){
+            source: {
+                if(globaldata.music === true){
                     "music/background_music.mp3"
                 }else{
                     ""
@@ -41,7 +42,6 @@ Rectangle {
                 Button {
                     id: nazajbtn
                     text: "Nazaj"
-                    onClicked: { playMusic.source=""; loader.source = "wordsGrid.qml" }
                     anchors.leftMargin: 10
                     height: 50
 
@@ -61,6 +61,28 @@ Rectangle {
                         border.color: parent.down ? "aqua" : "deepskyblue"
                         border.width: 1.5
                         radius: 5
+                    }
+                    Timer {
+                        id: longPressTimerSettingsNivo1
+
+                        interval: timerTime // interval, definiran zgoraj
+                        repeat: false
+                        running: false
+                    }
+
+                    // ko se spremeni pritisk
+                    onPressedChanged: {
+                        if ( pressed ) {
+                            longPressTimerSettingsNivo1.running = true;
+                        } else {
+                            if(longPressTimerSettingsNivo1.running){
+                                longPressTimerSettingsNivo1.running = false;
+                            } else {
+                                console.log("Action approved in nivo 1 on back button")
+                                playMusic.source="";
+                                loader.source = "wordsGrid.qml"
+                            }
+                        }
                     }
                 }
 

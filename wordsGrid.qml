@@ -23,7 +23,6 @@ Rectangle {
 
             Button {
                 text: "Nazaj"
-                onClicked: { mreza.visible = false; loader.source = "main.qml" }
                 anchors.leftMargin: 10
 
                 contentItem: Text {
@@ -43,6 +42,28 @@ Rectangle {
                     border.color: parent.down ? "aqua" : "deepskyblue"
                     border.width: 1.5
                     radius: 5
+                }
+
+                Timer {
+                    id: longPressTimerPlayWordsGridBack
+
+                    interval: timerTime // interval, definiran zgoraj
+                    repeat: false
+                    running: false
+                }
+
+                // ko se spremeni pritisk
+                onPressedChanged: {
+                    if ( pressed ) {
+                        longPressTimerPlayWordsGridBack.running = true;
+                    } else {
+                        if(longPressTimerPlayWordsGridBack.running){
+                            longPressTimerPlayWordsGridBack.running = false;
+                        } else {
+                            console.log("Action approved in wordsGrid on back button")
+                            mreza.visible = false; loader.source = "main.qml"
+                        }
+                    }
                 }
             }
 
@@ -85,7 +106,12 @@ Rectangle {
                 }
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: { mreza.visible = false; globaldata.shuffledTekst = wordsGrid.shuffelWord(tekst); globaldata.tekst = tekst; globaldata.slika = slika;
+                    onClicked: {
+                        // skrijem mrezo, premesam besedo in pokazem tekst & sliko
+                        mreza.visible = false;
+                        globaldata.shuffledTekst = wordsGrid.shuffelWord(tekst);
+                        globaldata.tekst = tekst;
+                        globaldata.slika = slika;
                         switch(globaldata.nivo) {
                             case "1":
                                 loader.source = "nivo1.qml"
